@@ -20,7 +20,7 @@ public class JPAConnection {
 			e.printStackTrace();
 		}
 		
-		connection = Persistence.createEntityManagerFactory("TAKEME");
+		connection = Persistence.createEntityManagerFactory("XY");
 		
 		return connection;
 	}

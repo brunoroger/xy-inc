@@ -12,6 +12,7 @@ import javax.validation.ValidatorFactory;
 
 import xy.bd.connection.JPAConnection;
 import xy.bd.interfaces.CrudDAO;
+import xy.exception.NotFoundException;
 import xy.exception.ValidException;
 import xy.util.Search;
 import xy.util.DAOFactory;
@@ -67,8 +68,12 @@ public class ServiceAbstract<E, ID, DAO extends CrudDAO<E, ID>> extends JPAConne
 		return this.dao.add(e);
 	}
 
-	public E edit(E e) throws Exception {
+	public E edit(ID id, E e) throws Exception {
 
+		if(this.dao.getObject(id) == null) {
+			throw new NotFoundException();
+		}
+		
 		this.validEntity(e);
 
 		return this.dao.edit(e);

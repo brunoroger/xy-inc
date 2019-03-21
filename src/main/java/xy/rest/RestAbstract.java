@@ -78,16 +78,17 @@ public class RestAbstract<E, ID, SERVICE extends ServiceBase<E, ID>> {
 	}
 
 	@PUT
+	@Path("/{id}")
 	@Produces("application/json; charset=utf-8")
 	@Consumes("application/json")
-	public Response edit(@Valid String json) {
+	public Response edit(@PathParam("id") ID id, @Valid String json) {
 
 		try {
 			E e = this.util.getObjectMapper().readValue(json, this.entity);
 
 			SERVICE service = this.service.newInstance();
 
-			return this.util.getResponseEdit(service.edit(e));
+			return this.util.getResponseEdit(service.edit(id, e));
 		} catch (Exception e) {
 			return this.util.getResponseException(e);
 		}

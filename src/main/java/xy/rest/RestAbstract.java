@@ -19,9 +19,10 @@ import javax.ws.rs.core.UriInfo;
 
 import xy.util.Search;
 import xy.util.UtilRest;
+import xy.objects.EntityObject;
 import xy.service.ServiceBase;
 
-public class RestAbstract<E, ID, SERVICE extends ServiceBase<E, ID>> {
+public class RestAbstract<E extends EntityObject<ID>, ID, SERVICE extends ServiceBase<E, ID>> {
 
 	private Class<E> entity;
 
@@ -117,7 +118,7 @@ public class RestAbstract<E, ID, SERVICE extends ServiceBase<E, ID>> {
 		try {
 			Search search = new Search();
 			
-			search.setParametros(allUri.getQueryParameters());
+			search.setParameters(allUri.getQueryParameters());
 			
 			SERVICE service = this.service.newInstance();
 			

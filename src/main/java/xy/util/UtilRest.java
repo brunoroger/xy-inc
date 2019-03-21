@@ -26,17 +26,17 @@ public class UtilRest {
 
 	public Response getResponseAdd(Object e) {
 		return this.getResponse(new RestResponse(
-				"Registro incluido com sucesso.", e), Response.Status.CREATED);
+				"Resource successfully added.", e), Response.Status.CREATED);
 	}
 
 	public Response getResponseEdit(Object e) {
 		return this.getResponse(new RestResponse(
-				"Registro alterado com sucesso.", e), Response.Status.OK);
+				"Resource successfully updated.", e), Response.Status.OK);
 	}
 
 	public Response getResponseRemove() {
 		return this.getResponse(new RestResponse(
-				"Registro removido com sucesso.", null), Response.Status.OK);
+				"Resource successfully removed.", null), Response.Status.OK);
 	}
 
 	public Response getResponseList(Object data) {

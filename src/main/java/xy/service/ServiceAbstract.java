@@ -14,10 +14,11 @@ import xy.bd.connection.JPAConnection;
 import xy.bd.interfaces.CrudDAO;
 import xy.exception.NotFoundException;
 import xy.exception.ValidException;
+import xy.objects.EntityObject;
 import xy.util.Search;
 import xy.util.DAOFactory;
 
-public class ServiceAbstract<E, ID, DAO extends CrudDAO<E, ID>> extends JPAConnection implements ServiceBase<E, ID> {
+public class ServiceAbstract<E extends EntityObject<ID>, ID, DAO extends CrudDAO<E, ID>> extends JPAConnection implements ServiceBase<E, ID> {
 
 	protected DAO dao;
 	
@@ -49,8 +50,8 @@ public class ServiceAbstract<E, ID, DAO extends CrudDAO<E, ID>> extends JPAConne
 
 			while (iterator.hasNext()) {
 				ConstraintViolation<E> cv = iterator.next();
-
-				msg += "- " + cv.getMessage();
+				
+				msg += " - " + cv.getPropertyPath() + ": " + cv.getMessage();
 			}
 
 			throw new ValidException(msg);
@@ -75,7 +76,9 @@ public class ServiceAbstract<E, ID, DAO extends CrudDAO<E, ID>> extends JPAConne
 		}
 		
 		this.validEntity(e);
-
+		
+		e.setPrimaryKey(id);
+		
 		return this.dao.edit(e);
 	}
 

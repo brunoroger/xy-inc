@@ -134,9 +134,9 @@ public abstract class JPAAbstract<E, ID> extends JPAConnection implements CrudDA
 		
 		TypedQuery<E> sql = em.createQuery(query.getSql(), this.entity);
 		
-		if(query.getParametros() != null){
-			for(String key : query.getParametros().keySet()){
-				sql.setParameter(key, query.getParametros().get(key));
+		if(query.getParameters() != null){
+			for(String key : query.getParameters().keySet()){
+				sql.setParameter(key, query.getParameters().get(key));
 			}
 		}
 		

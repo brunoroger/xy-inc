@@ -4,40 +4,40 @@ import javax.ws.rs.core.MultivaluedMap;
 
 public class Search {
 
-	private MultivaluedMap<String,String> parametros;
+	private MultivaluedMap<String,String> parameters;
 
-	public void setParametros(MultivaluedMap<String, String> parametros) {
-		this.parametros = parametros;
+	public void setParameters(MultivaluedMap<String, String> parameters) {
+		this.parameters = parameters;
 	}
 	
-	public String getString(String chave){
+	public String getString(String key){
 		
-		String retorno = this.parametros.getFirst(chave);
+		String returnParameter = this.parameters.getFirst(key);
 		
-		if(retorno != null && !retorno.isEmpty()){
-			return retorno;
+		if(returnParameter != null && !returnParameter.isEmpty()){
+			return returnParameter;
 		}else{
 			return null;
 		}
 	}
 	
-	public int getInt(String chave) throws Exception{
+	public int getInt(String key) throws Exception{
 		
-		String retorno = this.getString(chave);
+		String returnParameter = this.getString(key);
 		
-		if(retorno != null){
-			return Integer.parseInt(retorno);
+		if(returnParameter != null){
+			return Integer.parseInt(returnParameter);
 		}else{
 			return 0;
 		}
 	}
 	
-	public double getDouble(String chave) throws Exception{
+	public double getDouble(String key) throws Exception{
 		
-		String retorno = this.getString(chave);
+		String returnParameter = this.getString(key);
 		
-		if(retorno != null){
-			return Double.parseDouble(retorno);
+		if(returnParameter != null){
+			return Double.parseDouble(returnParameter);
 		}else{
 			return 0;
 		}

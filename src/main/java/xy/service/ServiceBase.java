@@ -2,9 +2,10 @@ package xy.service;
 
 import java.util.List;
 
+import xy.objects.EntityObject;
 import xy.util.Search;
 
-public interface ServiceBase<E, ID> {
+public interface ServiceBase<E extends EntityObject<ID>, ID> {
 
 	public E getObject(ID id) throws Exception;
 	public E add(E e) throws Exception;

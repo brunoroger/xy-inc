@@ -5,27 +5,42 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity(name= "products")
-public class Products {
+public class Products implements EntityObject<Integer>{
 	
 	@Id
 	@Column(name = "id", length = 5)
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotNull
+	@NotEmpty
 	@Column(name = "name", length = 45)
 	private String name;
 	
+	@NotNull
+	@NotEmpty
 	@Column(name = "description", length = 500)
 	private String description;
 	
+	@NotNull
+	@DecimalMin(value = "0.01")
 	@Column(name = "price", length = 9)
 	private double price;
 	
+	@NotNull
+	@NotEmpty
 	@Column(name = "category", length = 45)
 	private String category;
 
+	public void setPrimaryKey(Integer id) {
+		this.setId(id);
+	}
+	
 	public int getId() {
 		return id;
 	}

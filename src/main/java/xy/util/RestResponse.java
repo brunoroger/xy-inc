@@ -33,11 +33,11 @@ public class RestResponse {
 		this.data = e.getMessage();
 	}
 	
-	public String getmessage() {
+	public String getMessage() {
 		return message;
 	}
 	
-	public void setmessage(String message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 	
